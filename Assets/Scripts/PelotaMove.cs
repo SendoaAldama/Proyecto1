@@ -74,11 +74,31 @@ public class PelotaMove : MonoBehaviour
         }
         else if (collision.collider.CompareTag("Pared1"))  //Con la pared superior
         {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, -rb2D.velocity.y);
+            abajo = true;
+            if (rb2D.velocity.x > 0)
+            {
+                derecha = true;
+                AplicarReboteTecho(collision, 1f); // Aplicar rebote hacia la derecha
+            }
+            else if (rb2D.velocity.x < 0)
+            {
+                izquierda = true;
+                AplicarReboteTecho(collision, -1f); // Aplicar rebote hacia la derecha
+            }
         }
         else if (collision.collider.CompareTag("Pared2"))  //Con la pared inferior
         {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y);
+            arriba = true;
+            if (rb2D.velocity.x > 0)
+            {
+                derecha = true;
+                AplicarReboteTecho(collision, 1f); // Aplicar rebote hacia la derecha
+            }
+            else if (rb2D.velocity.x < 0)
+            {
+                izquierda = true;
+                AplicarReboteTecho(collision, -1f); // Aplicar rebote hacia la derecha
+            }
         }
     }
 
@@ -96,9 +116,9 @@ public class PelotaMove : MonoBehaviour
         float velocidadX = 0f;
         float velocidadY = runMove * Mathf.Sin(anguloDeRebote);
 
-        if (derecha)
+        if(derecha)
         {
-            velocidadX = runMove * Mathf.Cos(anguloDeRebote) * direccionX;
+            velocidadX = runMove * Mathf.Cos(anguloDeRebote);
         }
         if(izquierda)
         {
@@ -111,6 +131,46 @@ public class PelotaMove : MonoBehaviour
         //Limpuamos
         derecha = false;
         izquierda = false;
+    }
+
+    private void AplicarReboteTecho(Collision2D collision, float direccionX)
+    {
+        
+        // Calcula el ángulo de rebote en radianes
+        float anguloDeRebote = 0f;
+
+        if(arriba)
+        {
+            anguloDeRebote = Mathf.Deg2Rad * 45f; // 45f grados en radianes
+        }
+        if(abajo)
+        {
+            anguloDeRebote = Mathf.Deg2Rad * -45f; // 45f grados en radianes
+        }
+
+        // Calcula la dirección de rebote
+        Vector2 direccionDeRebote = new Vector2(Mathf.Cos(anguloDeRebote), Mathf.Sin(anguloDeRebote));
+
+        // Calcula la velocidad de rebote en función de la dirección y la velocidad de movimiento original
+        float velocidadX = 0f;
+        float velocidadY = runMove * direccionDeRebote.y;
+
+        if (izquierda)
+        {
+            velocidadX = runMove * direccionDeRebote.x;
+            velocidadX = velocidadX * -1f;
+        }
+        if(derecha)
+        {
+            velocidadX = runMove * direccionDeRebote.x;
+        }
+
+        // Aplica la nueva velocidad a la pelota
+        rb2D.velocity = new Vector2(velocidadX, velocidadY);
+
+        //Limpuamos
+        derecha = true;
+        izquierda = true;
     }
 
     private void Lanzar()   //Lanzamos de vueltala pelota

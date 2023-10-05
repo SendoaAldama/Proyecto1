@@ -29,11 +29,11 @@ public class PalaMove2 : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.A)) //Si pusla la A
+        if (Input.GetKey(KeyCode.LeftArrow)) //Si pusla la flecha izquierda
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, speedMove);    //Vamos arriba
         }
-        else if (Input.GetKey(KeyCode.D))   //Si pulsa la D
+        else if (Input.GetKey(KeyCode.RightArrow))   //Si pulsa la flecha derecha
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, -speedMove);   //Vamos abajo
         }
