@@ -34,4 +34,15 @@ public class PalaMove1 : MonoBehaviour
             rb2D.velocity = new Vector2(rb2D.velocity.x, 0);    //Se queda en el sitio
         }
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Pared1"))
+        {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, 0f);
+
+            // Marcar el límite (puedes agregar tu lógica personalizada aquí)
+            // Por ejemplo, puedes enviar un mensaje a otro script para manejar la puntuación o el límite alcanzado.
+        }
+    }
 }

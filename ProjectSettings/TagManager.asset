@@ -4,13 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Pared
   - Porteria
   - Pala1
   - Pala2
   - Porteria1
   - Porteria2
   - Pelota
+  - Pared1
+  - Pared2
   layers:
   - Default
   - TransparentFX
