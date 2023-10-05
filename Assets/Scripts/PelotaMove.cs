@@ -129,11 +129,11 @@ public class PelotaMove : MonoBehaviour
         // Calcula el ángulo de rebote en radianes
         float anguloDeRebote = 0f;
 
-        if (arriba)
+        if (arriba) //Si va hacia arriba
         {
             anguloDeRebote = Mathf.Deg2Rad * 45f; // 45 grados en radianes
         }
-        if (abajo)
+        if (abajo)  //Si va hacia abajo
         {
             anguloDeRebote = Mathf.Deg2Rad * -45f; // -45 grados en radianes
         }
