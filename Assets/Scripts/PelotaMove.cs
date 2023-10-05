@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -13,21 +14,24 @@ public class PelotaMove : MonoBehaviour
     public float runMove = 6f; 
 
         //Direccion izquierda derecha
-    public bool derecha = false;
-    public bool izquierda = false;
-    
+    private bool derecha = false;
+    private bool izquierda = false;
+
         //Toca arriba o abajo
-    public bool arriba = false;
-    public bool abajo = false;
+    private bool arriba = false;
+    private bool abajo = false;
 
         //Salida inicio
-    public bool salida;
+    private bool salida;
 
         //Rigidbody2D
     public Rigidbody2D rb2D;
 
         //Recogemos valor
     public new UnityEngine.Transform transform;
+
+        //Marcador
+    public Text marcador;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +62,42 @@ public class PelotaMove : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Porteria1"))
+        {
+            // Obtén el texto del componente Text
+            string textoCompleto = marcador.text;
+
+            // Separa el texto en un array utilizando la coma como separador
+            string[] elementos = textoCompleto.Split(' ');
+            elementos[0] = (int.Parse(elementos[0]) + 1).ToString();
+
+            // Une los elementos del array de nuevo en una cadena con comas
+            string nuevoTexto = string.Join(" ", elementos);
+            marcador.text = nuevoTexto;
+
+            izquierda = true;
+            PelotaInicio();
+        }
+        if (collision.CompareTag("Porteria2"))
+        {
+            // Obtén el texto del componente Text
+            string textoCompleto = marcador.text;
+
+            // Separa el texto en un array utilizando la coma como separador
+            string[] elementos = textoCompleto.Split(' ');
+            elementos[2] = (int.Parse(elementos[2]) + 1).ToString();
+
+            // Une los elementos del array de nuevo en una cadena con comas
+            string nuevoTexto = string.Join(" ", elementos);
+            marcador.text = nuevoTexto;
+
+            derecha = true;
+            PelotaInicio();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -153,7 +193,6 @@ public class PelotaMove : MonoBehaviour
         abajo = false;
     }
 
-
     private void Lanzar()   //Lanzamos de vueltala pelota
     {
         if (derecha)    //Si es true la derecha
@@ -168,11 +207,15 @@ public class PelotaMove : MonoBehaviour
         }
     }
 
-    public void PelotaInicio()      //Inidcamos que siempre empieza en 0, lo llamaremos cuando entre gol
+    private void PelotaInicio()      //Inidcamos que siempre empieza en 0, lo llamaremos cuando entre gol
     {
-        //Inidcamos que siempre empieza en 0
-        Vector2 nuevaPosicon = new Vector2(transform.position.x, transform.position.y);
-        transform.position = nuevaPosicon;
+        //Velocidad 0 para que se quede quieto
+        rb2D.velocity = new Vector2 (0f, 0f);
+
+        // Asignamos la posición (0, 0) directamente al atributo transform.position
+        transform.position = new Vector2(0f, 0f);
+
+        Invoke(nameof(Lanzar), 1.75f);
     }
 
 }
