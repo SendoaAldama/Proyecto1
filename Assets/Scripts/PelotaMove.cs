@@ -113,17 +113,8 @@ public class PelotaMove : MonoBehaviour
         float anguloDeRebote = Mathf.Atan2(direccion.y, direccion.x);
 
         // Ajusta la velocidad de rebote en función de la posición de impacto
-        float velocidadX = 0f;
+        float velocidadX = runMove * Mathf.Cos(anguloDeRebote);
         float velocidadY = runMove * Mathf.Sin(anguloDeRebote);
-
-        if(derecha)
-        {
-            velocidadX = runMove * Mathf.Cos(anguloDeRebote);
-        }
-        if(izquierda)
-        {
-            velocidadX = runMove * Mathf.Cos(anguloDeRebote);
-        }
 
         // Aplica la nueva velocidad a la pelota
         rb2D.velocity = new Vector2(velocidadX, velocidadY);
@@ -135,43 +126,33 @@ public class PelotaMove : MonoBehaviour
 
     private void AplicarReboteTecho(Collision2D collision, float direccionX)
     {
-        
         // Calcula el ángulo de rebote en radianes
         float anguloDeRebote = 0f;
 
-        if(arriba)
+        if (arriba)
         {
-            anguloDeRebote = Mathf.Deg2Rad * 45f; // 45f grados en radianes
+            anguloDeRebote = Mathf.Deg2Rad * 45f; // 45 grados en radianes
         }
-        if(abajo)
+        if (abajo)
         {
-            anguloDeRebote = Mathf.Deg2Rad * -45f; // 45f grados en radianes
+            anguloDeRebote = Mathf.Deg2Rad * -45f; // -45 grados en radianes
         }
 
         // Calcula la dirección de rebote
         Vector2 direccionDeRebote = new Vector2(Mathf.Cos(anguloDeRebote), Mathf.Sin(anguloDeRebote));
 
-        // Calcula la velocidad de rebote en función de la dirección y la velocidad de movimiento original
-        float velocidadX = 0f;
-        float velocidadY = runMove * direccionDeRebote.y;
-
-        if (izquierda)
-        {
-            velocidadX = runMove * direccionDeRebote.x;
-            velocidadX = velocidadX * -1f;
-        }
-        if(derecha)
-        {
-            velocidadX = runMove * direccionDeRebote.x;
-        }
+        // Calcula la velocidad de rebote en función del ángulo de rebote y la velocidad de movimiento original
+        float velocidadX = runMove * Mathf.Cos(anguloDeRebote) * direccionX;
+        float velocidadY = runMove * Mathf.Sin(anguloDeRebote);
 
         // Aplica la nueva velocidad a la pelota
         rb2D.velocity = new Vector2(velocidadX, velocidadY);
 
-        //Limpuamos
-        derecha = true;
-        izquierda = true;
+        // Limpia las banderas de dirección
+        arriba = false;
+        abajo = false;
     }
+
 
     private void Lanzar()   //Lanzamos de vueltala pelota
     {
