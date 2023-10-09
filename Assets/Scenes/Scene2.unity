@@ -164,6 +164,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 971130861861639210, guid: 829b99b303b0bb042a56eec0da00708a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1076516352154586841, guid: 829b99b303b0bb042a56eec0da00708a, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -250,7 +254,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8333235975355676953, guid: 829b99b303b0bb042a56eec0da00708a, type: 3}
       propertyPath: m_Constraints
-      value: 2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333235975355676953, guid: 829b99b303b0bb042a56eec0da00708a, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8333235975355676953, guid: 829b99b303b0bb042a56eec0da00708a, type: 3}
       propertyPath: m_UseAutoMass
@@ -744,7 +752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8333235975355676953, guid: 829b99b303b0bb042a56eec0da00708a, type: 3}
       propertyPath: m_Constraints
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8333235975355676953, guid: 829b99b303b0bb042a56eec0da00708a, type: 3}
       propertyPath: m_UseAutoMass
