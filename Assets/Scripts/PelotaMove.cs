@@ -73,7 +73,7 @@ public class PelotaMove : MonoBehaviour
 
             // Separa el texto en un array utilizando la coma como separador
             string[] elementos = textoCompleto.Split(' ');
-            elementos[0] = (int.Parse(elementos[0]) + 1).ToString();
+            elementos[2] = (int.Parse(elementos[2]) + 1).ToString();
 
             // Une los elementos del array de nuevo en una cadena con comas
             string nuevoTexto = string.Join(" ", elementos);
@@ -89,7 +89,7 @@ public class PelotaMove : MonoBehaviour
 
             // Separa el texto en un array utilizando la coma como separador
             string[] elementos = textoCompleto.Split(' ');
-            elementos[2] = (int.Parse(elementos[2]) + 1).ToString();
+            elementos[0] = (int.Parse(elementos[0]) + 1).ToString();
 
             // Une los elementos del array de nuevo en una cadena con comas
             string nuevoTexto = string.Join(" ", elementos);
