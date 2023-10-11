@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove1 : MonoBehaviour
 {
 
     //Variables
@@ -11,7 +11,6 @@ public class PlayerMove : MonoBehaviour
 
         //Referencia al personaje
     public Rigidbody2D rb2D;
-    public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()    //Al empezar
@@ -20,35 +19,28 @@ public class PlayerMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void FixedUpdate()
+    void Update()   //Se llama cada llamada del frame
     {
         //Movimiento del personaje de izquierda a derecha
-        if (Input.GetKey(KeyCode.D))    //Movimiento de derecha
+        if (Input.GetKey(KeyCode.RightArrow))    //Movimiento de derecha
         {
             rb2D.velocity = new Vector2(runSpeed, rb2D.velocity.y);
-            spriteRenderer.flipX = false;
         }
-        else if (Input.GetKey(KeyCode.A)) //Movimiento de izquierda
+        else if (Input.GetKey(KeyCode.LeftArrow)) //Movimiento de izquierda
         {
             rb2D.velocity = new Vector2(-runSpeed, rb2D.velocity.y);
-            spriteRenderer.flipX = true;
         }
-        else  //No hay movimiento
+        else  //No hay movimiento lateral, frena en seco
         {
             rb2D.velocity = new Vector2(0, rb2D.velocity.y);
         }
 
         //Movimiento de personaje de arriba a abajo
-        if (Input.GetKey(KeyCode.W))   //Movimiento arriba
+        if (Input.GetKey(KeyCode.UpArrow))   //Movimiento acia arriba
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, runSpeed);
         }
-        else if (Input.GetKey(KeyCode.S))    //Movimiento abajo
+        else if (Input.GetKey(KeyCode.DownArrow))    //Movimiento acia abajo
         {
             rb2D.velocity = new Vector2(rb2D.velocity.x, -runSpeed);
         }
