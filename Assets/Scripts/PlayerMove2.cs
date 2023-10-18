@@ -30,10 +30,6 @@ public class PlayerMove1 : MonoBehaviour
         {
             rb2D.velocity = new Vector2(-runSpeed, rb2D.velocity.y);
         }
-        else  //No hay movimiento lateral, frena en seco
-        {
-            rb2D.velocity = new Vector2(0, rb2D.velocity.y);
-        }
 
         //Movimiento de personaje de arriba a abajo
         if (Input.GetKey(KeyCode.UpArrow))   //Movimiento acia arriba
