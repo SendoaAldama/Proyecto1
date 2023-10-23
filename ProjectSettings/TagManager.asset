@@ -12,6 +12,7 @@ TagManager:
   - Pelota
   - Pared1
   - Pared2
+  - Coin
   layers:
   - Default
   - TransparentFX
